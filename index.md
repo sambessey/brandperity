@@ -3,8 +3,6 @@
 
 ## Version 0.1
 
-<!--<img src="./demo.gif" width=600></img>-->
-
 Brandperity is the working title for a Google Chrome extension that allows you to personalise the Acme tenant to deliver a custom demo. It works by modifying text, images, and Material icons in the Acme UI, by applying substitutions locally in your browser. 
 
 ## 🎉 Current Features 🎉
@@ -26,15 +24,26 @@ Brandperity is the working title for a Google Chrome extension that allows you t
 - [x] Better save/load/import/export list options
 - [x] Ability to easily share configurations
 - [x] Manage configurations in Google Sheets!!
+- [x] Support for Regular Expressions, case insensitivity, 'Starts With', 'Ends With', 'Match Whole Word' etc.
+- [x] 'Hide All Except...' Will hide the huge lists of segments and queries you see in the UI except for the ones you want for your demo.
+- [x] Rewrite the main hacky substitution module, which currently works by looping around the page looking for changes until certain conditions are met, to a model that watches for DOM mutations using a more elegant JavaScript core library (MutationObserver). This will result in a smoother user experience and fewer visual bugs.
 
 ## 🐛 Known Bugs! 🐛
 
 - [x] Switching between C360 databases will reset the view of attributes back to the default. Exit the C360 tab and re-enter it to reset this.
-- [x] Values containing - or + (Both as the string you want to replace and the one you are replacing with)can cause problems like <undefined> to appear in the UI or substituions not to be made correctly. Currently no workaround, but I know why this happens. Please test carefully until fixed in the next release.
-- [x] Any refreshes performed on Segment pages sometimes lead to the UI becoming stuck as it reloads. This only happens when refrehsing, and not when navigating normally as per a demo.
+- [x] Values containing - or + (Both as the string you want to replace and the one you are replacing with) can cause problems like <undefined> to appear in the UI or substitutions not to be made correctly. Currently, there is no workaround, but I know why this happens. Please test carefully until it is fixed in the next release.
+- [x] Any refreshes performed on Segment pages sometimes lead to the UI becoming stuck as it reloads. This only happens when refreshing, and not when navigating normally as per a demo.
 - [x] Clearing a list and importing a new, shorter one will cause the console.log to fill with errors in an infinite loop. (Does not impact the user experience). This is due to lazy coding and will be fixed in the next release.
 - [x] Sometimes (and always on the first use after a fresh install) the 'save' button appears not to work/ your list will disappear or not look updated. Also the 'refresh' button seems to break at the same time. If this happens, refresh the page and open the extension again - your changes should all be reflected.
+- [x] If you have conflicting changes (i.e. you rename a certain field twice), you will see odd behaviour (sometimes) like values switching back and forth at very high speeds in the interface. As a workaround, remove these changes.
+- [x] Clicking into a chart in Segment Insights will show the incorrect labels on the right-hand side
+- [x] Sometimes, changing lots of values in a list without adding or deleting anything will cause the UI (or the extension) to look empty. If this happens, refresh both. No data should be lost.
 
+## 👀 Things to watch out for! 👀
+
+- [x] Searching for changed attributes will cause weirdness in the menu; don't do it in a demo!
+- [x] If re-naming insight chart labels, bear in mind they are actually written as "Preferred Brand", not "PREFERRED BRAND" as they appear in the label. There is no case insensitivity at the moment, so you will not see your change work unless you case your change like the first example here
+- [x] Weird word substitutions are common at the moment... Avoid changing terms like 'NY' and 'WA' as you will see words change to weird values. This isn't a bug, but due to not having very advanced substitution options yet.
 
 ## Install
 
